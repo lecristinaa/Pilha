@@ -1,48 +1,63 @@
-
-// Cria a pilha com tamanho
-export function criarPilha(tamanhoDaPilha = 4){
-    console.log('INICIAMOS A PILHA') // Exibe no console
-    return [...new Array (tamanhoDaPilha)] // Cria uma array com X elementos "vazio" (undefined)
-    // [...] desestruração
+// Criar ela com tamanho
+export function criarPilha(tamanhoDaPilha = 10) { // Verifico se tem valor,senão, use 10
+    // Criar uma array com o tamanho que pediram
+    return [...new Array(tamanhoDaPilha)] // Desestruturação
 }
 
-// Inserir na fila, necessário primeiro verificar se há espaço na pilha
-export function inserirItem(pilha, elemento){
-    // Ver se tem espaço para inserir
-        // Se não tiver espaço, lançar erro tiver espaço
-        // Se tiver, insere no primeiro
-        const spacePosition = pilha.indexOf(undefined)
-    if(spacePosition === -1) { // O indexOf trás a posição, ou -1 caso não tenha
-        console.log("Não tem espaço")
+// Inserir item
+export function inserirItem(pilha, item) {
+    // Ver se tem espaço pra inserir (tem undefined)
+    const spacePosition = pilha.indexOf(undefined) // Acha o primeiro undefined    
+    if(spacePosition === -1) { // Não tem espaço
+        console.log('Não tem espaço')
+        return
+    }    
+    // Se tiver espaço, insere no primeiro undefined
+    pilha[spacePosition] = item
+    // Se não tiver, aumenta o tamanho da pilha, e insere*
+}
+
+// Retirar item
+export function retirarItem(pilha) {
+    // Ver se tem item pra retirar
+    // [undefined, undefined, undefined]
+    if(pilha[0] === undefined) { // Não tem item
+        console.log('Pilha vazia')
         return
     }
-    pilha[spacePosition] = elemento
 
+    const lastItemPosition = pilha.indexOf(undefined) // Acha o último undefined
+    // ["Lucas", "Richard", "Matheus"]
+    const selectedItem = pilha[lastItemPosition - 1] // Acha o item anterior ao último undefined
+    if(lastItemPosition === -1) { // Não tem espaço
+        pilha.pop() // Retira o último item
+        return
+    }
+    // ["Lucas", "Richard", undefined, undefinded]
+    pilha.splice(lastItemPosition - 1, 1, undefined)
+    return selectedItem
+
+    // vá até o primeiro undefined e retire o item anterior
+    // pois o undefined é o espaço vazio
+    // e antes dele tem um item
 }
 
-// Retirar da fila
-// .splice() --> irá retirar até o undefined (diminui o tamanho da pilha)
-export function retirarItem(pilha){
-    // Ver se tem item para retirar
-    // Vá ate o primeiro undefined e retire o item anterior (undefined é espaço vazio)
+//Ver se tem na pilha
+export function procurarNaPilha(pilha, item){
+    // Ande na pilha e procure nela
+    // Se achar retorne true ou console.log / Se não achar retorne false
+    for (let i = 0; i < pilha.length; i++) {
+        if(pilha[i].ra === item.ra){
+            console.log('Achei o aluno ' + item.ra)
+            return
+        }
+    }
+}
 
-    // Pilha vazia --> [undefined, undefined, undefined, undefined]
+// Verifica se está vazia
+export function estaVazia(pilha){
     if(pilha[0] === undefined){
-        console.log("Pilha vazia")
-        return
+        return true
     }
-
-    const lastItemPosition = pilha.lastIndexOf(undefined)
-    const selectedItem = pilha
-    // Pilha não esta vazia e está totalmente cheia --> [Haroldo, Isabelle, Juliana, Caio]
-    if(lastItemPosition === -1){
-        pilha.pop()
-        return
-    }
-
-    // Pilha não está vazia e nem totalmente cheia --> [Haroldo, Isabelle, undefined, undefined]
-
-    
-    
-    
+    return false
 }
