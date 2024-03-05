@@ -1,31 +1,40 @@
-// type: module --> importa e exporta os códigos de arquivos diferentes
-// type: commonjs -->  não consegue utilizar importar e exportar
+import { criarPilha, inserirItem, retirarItem, procurarNaPilha, estaVazia  } from './pilha.js' // Chamando do outro arquivo
 
-import { criarPilha, inserirItem, retirarItem } from "./pilha.js"
-
-const pilha = criarPilha()
-
-
-
-// Inserir item na pilha manualmente
-// inserirItem(pilha, "Haroldo")
-// inserirItem(pilha, "Isabelle")
-
-// Inserir item na pilha com nova array
-const nomesAlunos = [
-    "Haroldo",
-    "Isabelle",
-    "Juliana",
-    "Caio",
+const listaObjetos = [
+    {
+        nome: "ALUNO 11",
+        ra: '2411',
+        idade: 16,
+    },
+    {
+        nome: "ALUNO 12",
+        ra: '2412',
+        idade: 17,
+    },
 ]
-nomesAlunos.forEach((nome) => {
-    inserirItem(pilha, nome)
-})
+console.log("Meu arquivo index.js") // Print, mostrar dados
+const pilha = criarPilha(3) // Criando com tamanho X
+console.log(pilha) // Mostra a pilha vazia
+inserirItem(pilha,
+    {
+    
+        nome: "ALUNO 11",
+        ra: '2411',
+        idade: 16,
+    }
+)
+procurarNaPilha(pilha, 
+    {
+        nome: "ALUNO 11",
+        ra: '2411',
+        idade: 16,
+    },
+)
 
+pilhaVazia()
 
-// Retirar item da pilha e conseguir mostrar quem foi removido
-// retirarItem(pilha) --> apenas retirar, quando a função não tiver return
+// Insira todos os itens da listaObjetos na pilha
 
+// Retire 1
 
-
-console.log(pilha) // Exibe no console a array com X elementos
+// Mostre a pilha no fim
